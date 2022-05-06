@@ -66,6 +66,31 @@ fn main() {
 
     let n:f64 = n.trim().parse().expect("invalid input");
     println!("{:?}", n);
+
+    // Practice
+    println!("Input the width of a rectangle");
+    let mut n = String::new();
+    std::io::stdin()
+        .read_line(&mut n)
+        .expect("Failed to read input");
+    let width: u32 = n.trim().parse().expect("invalid input");
+
+    println!("Input the height of a rectangle");
+
+    std::io::stdin()
+        .read_line(&mut n)
+        .expect("Failed to read input");
+    let length: u32 = n.trim().parse().expect("invalid input");
+
+    let resultant_area = {
+        area(width, length)
+    };
+
+    println!("The area of is {}", resultant_area);
+}
+
+fn area(length:u32, width:u32) -> u32 {
+    length * width
 }
 
 fn basic_fn() {
@@ -82,4 +107,33 @@ fn function_with_inputs_outputs(num1: i32, num2: i32) -> i32 {
 
 fn function_with_inputs_multiple_outputs(num1: i32, num2: i32) -> (i32, i32, i32) {
     (num1 * num2, num1 + num2, num1 - num2)
+}
+
+struct Calculator {
+    balance: f64
+}
+
+trait Operator {
+    fn add(num1: f64, num2: f64) -> f64;
+    fn sub(num1: f64, num2: f64) -> f64;
+    fn div(num1: f64, num2: f64) -> f64;
+    fn mul(num1: f64, num2: f64) -> f64;
+}
+
+impl Operator for Calculator {
+    fn add(num1: f64, num2: f64) -> f64 {
+        num1 + num2
+    }
+
+    fn sub(num1: f64, num2: f64) -> f64 {
+        num1 - num2
+    }
+
+    fn div(num1: f64, num2: f64) -> f64 {
+        num1 / num2
+    }
+
+    fn mul(num1: f64, num2: f64) -> f64 {
+        num1 * num2
+    }
 }
