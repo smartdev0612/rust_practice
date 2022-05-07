@@ -147,6 +147,7 @@ fn main() {
     // 5. 
 
     // Stack
+    /*
     println!("let us first create a stack for our use");
     println!("Please mention the size of the stack");
 
@@ -180,29 +181,46 @@ fn main() {
             break;
         }
     }
+    */
+
+    let input_string = String::from("Welcome to Rust");
+    let size_stack = input_string.len();
+    let mut stack = new_stack(size_stack);
+    let mut rev_string = String::new();
+
+    for i in input_string.chars() {
+        push(&mut stack, i, size_stack);
+    }
+
+    for i in 0..size(&stack) {
+        rev_string.push(pop(&mut stack).unwrap());
+    }
+
+    println!("The input string is {:?}", input_string);
+    println!("The reverse of the string is {:?}", rev_string);
 }
 
-fn new_stack(maxsize: usize) -> Vec<u32> {
-    let vec: Vec<u32> = Vec::with_capacity(maxsize);
+fn new_stack(maxsize: usize) -> Vec<char> {
+    let vec: Vec<char> = Vec::with_capacity(maxsize);
     vec
 }
 
-fn pop(stack: &mut Vec<u32>) -> Option<u32> {
+fn pop(stack: &mut Vec<char>) -> Option<char> {
     let poped_value = stack.pop();
-    println!("The poped value is {:?}", poped_value);
+    // println!("The poped value is {:?}", poped_value);
     poped_value
 }
 
-fn push(stack: &mut Vec<u32>, item: u32, maxsize: usize) {
+fn push(stack: &mut Vec<char>, item: char, maxsize: usize) {
     if stack.len() == maxsize {
-        println!("Can't add more elements");
+        // println!("Can't add more elements");
     } else {
         stack.push(item);
-        println!("Stack: {:?}", stack);
+        // println!("Stack: {:?}", stack);
     }
 }
 
-fn size(stack: &Vec<u32>) -> usize {
+fn size(stack: &Vec<char>) -> usize {
     stack.len()
 }
 
