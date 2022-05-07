@@ -1,95 +1,172 @@
 fn main() {
-    // Rust Ownership
-    let mut x = 32;
-    let mut y = x;
-    println!("The value of x = {}, y = {}", x, y);
-
-    let s1 = String::from("abc");
-    let s2 = &s1;
-    println!("The value of s1 = {} and the value of s2 = {}", s1, s2);
-
-    let num_vec1:Vec<i32> = vec![5, 6, 9, 8, 7];
-    let num_vec2 = &num_vec1;
-    println!("The first vector is {:?} and the second one is {:?}", num_vec1, num_vec2);
-
-    let num_vec2 = num_vec1.clone();
-    println!("The first vector is {:?} and the second one is {:?}", num_vec1, num_vec2);
-
-    {
-        // scope 
-        let my_name = String::from("Nouman Azam");
+    // if conditional
+    let some_number = 40;
+    if some_number < 50 {
+        println!("The number is less than 50");
     }
 
-    // println!("My name is {}", my_name);
+    // loops
+    /* let my_number = 5;
+    let mut guess = false;
 
-    // Ownership and function
-    let stack_num = 32;
-    let mut heap_num = vec![4, 5, 6];
-    stack_function(stack_num);
-    println!("The stack variable is copied and the original value was {}", stack_num);
+    println!("Guess my number which is between 1 and 20");
 
-    heap_function(&mut heap_num);
-    println!("the value of the vector outside the function is {:?}", heap_num);
+    while guess != true {
+        let mut number = String::new();
+        std::io::stdin().read_line(&mut number).expect("failed to read input");
+        let number:u8 = number.trim().parse().expect("Invalid input");
 
-    // Quiz
-    let mut heap_num = vec![4, 5, 6];
-    let ref1 = heap_num;
-    let ref2 = &ref1;
+        if my_number == number {
+            println!("You guessed the number correctly");
+            guess = true;
+        } else {
+            println!("Please try again")
+        }
+    } 
 
-    // let mut heap_num = vec![4, 5, 6];
-    // let ref1 = &mut heap_num;
-    // let ref2 = &mut heap_num;
-    // println!("the first reference is {:?} and the second one is {:?}", ref1, ref2);
+    println!("Enter a number and I will tell you the next number after your number which is divisable by both 2 and 5");
+    let mut number = String::new();
+    std::io::stdin().read_line(&mut number).expect("failed to read input");
+    let mut number:u8 = number.trim().parse().expect("Invalid input");
 
-    // let mut heap_num = vec![4, 5, 6];
-    // let ref1 = &heap_num;
-    // let ref2 = &heap_num;
-    // println!("The first references is {:?} and the second one is {:?}", ref1, ref2);
+    while (number % 2 == 0 && number % 5 == 0) != true {
+        number = number + 1;
+    }
+    println!("The number after your number which is divisable by 2 and 5 is {}", number);
+    */
 
-    // let mut heap_num = vec![4, 5, 6];
-    // let ref1 = &heap_num;
-    // let ref2 = &heap_num;
-    // let ref3 = &mut heap_num;
-    // println!("Immutable references are {:?} and {:?} and the mutalbe reference is {:?}", ref1, ref2, ref3);
+    // For loops
+    /*
+    let mut some_vec = vec![45, 30, 85, 90, 15, 23, 98];
+    for i in some_vec.iter() {
+        println!("{}", i);
+    }
 
-    // let mut heap_num = vec![4, 5, 6];
-    // let ref1 = &heap_num;
-    // let ref2 = &heap_num;
-    // println!("Immutable references are {:?} and {:?}", ref1, ref2);
+    println!("{:?}", some_vec); 
+    
 
-    // let ref3 = &mut heap_num;
+    let mut some_vec = vec![45, 30, 85, 90, 15, 23, 98];
+    for i in some_vec.iter_mut() {
+        *i += 5;
+        println!("{}", i);
+    }
+    println!("{:?}", some_vec);
+    */
 
-    let mut heap_num = vec![4, 5, 6];
-    heap_num.push(86);
-    let ref1 = &heap_num;
-    let ref2 = &heap_num;
-    println!("Immutalbe references are {:?} and {:?}", ref1, ref2);
+    // Break and Continue
+    /*
+    let mut var = 100;
+    loop {
+        var = var - 1;
+        if var % 13 == 0 {
+            break;
+        }
+    }
+    println!("The highest number lesser than the given number divisable by 13 is {}", var);
+    
 
-    heap_num.push(86);
+    let mut var = 0;
+    let mut count = 0;
+    let req_number = loop {
+        var = var + 1;
+        if var % 5 == 0 && var % 3 == 0 {
+            println!("the number which is divisable by both 3 and 5 is {}\n", var);
+            count = count + 1;
+            if count == 3 {
+                break var;
+            } else {
+                continue;
+            }
+        }
+        println!("{}", var);
+    };
+    println!("The required third highest number is {}", req_number);
+    */
 
-    // String concatenation and ownership
-    let s1 = String::from("Hello");
-    let s2 = String::from("World");
-    let s3 = s1 + &s2;
-    println!("{} {}", s3, s2);
+    // 1. Calculate the difference
+    /*
+    println!("Please enter the number:");
+    let mut number = String::new();
+    std::io::stdin().read_line(&mut number).expect("failed to read input");
+    let number:u8 = number.trim().parse().expect("Invalid input");
 
-    let s1:String = String::from("this is me");
-    let s2: &str = "myself";
+    let mut sum = 0;
+    let mut sum_of_square = 0;
+    
+    for n in 1..number + 1 {
+        println!("{}", n);
+        sum += n;
+        sum_of_square += (n as i32).pow(2);
+    }
 
-    some_function(&s1,s2); 
-    println!("{} {}",s1,s2);
+    println!("Square of sum is {}, and sum of square is {}", (sum as i32).pow(2), sum_of_square);
+    println!("The difference is {}", (sum as i32).pow(2) - sum_of_square);
+    */
+
+    // 2. Sum of natural numbers
+    /*
+    println!("Please enter the number:");
+    let mut number = String::new();
+    std::io::stdin().read_line(&mut number).expect("failed to read input");
+    let number:u8 = number.trim().parse().expect("Invalid input");
+
+    let mut multiples = vec![];
+    let mut sum = 0;
+
+    for n in 1..number {
+        if n % 3 == 0 {
+            multiples.push(n);
+        } else if n % 3 == 0 && n % 5 == 0 {
+            continue;
+        } else if n % 5 == 0 {
+            multiples.push(n);
+        }
+    }
+
+    println!("Multiples: {:?}", multiples);
+
+    for num in multiples {
+        sum += num;
+    }
+
+    println!("Sum: {}", sum);
+    */
+
+    // 3. 
+    /*
+    let cars = production_rate_per_hour(1, 4);
+    let cars2 = cars_produced_per_minutes(4, 4);
+    println!("{} {}", cars, cars2);
+    */
+
+    // 4. Palindrome
+    //println!("{}", palindrome("ele"));
+
+    // 5. 
 }
 
-fn some_function(a1: &String, a2: &str){
-    println!("{} {}",a1,a2); 
+fn production_rate_per_hour(number_of_hours: i32, speed: i32) -> i32 {
+    match speed {
+        1..=4 => number_of_hours * speed * 221,
+        5..=8 => number_of_hours * speed * 221 * 90 / 100,
+        9 | 10 => number_of_hours * speed * 221 * 77 / 100,
+        _ => 0 
+    }
 }
 
-fn stack_function(mut var:i32) {
-    var = 46;
-    println!("The copied value of the variable has been updated to {}", var);
+fn cars_produced_per_minutes(hours: i32, speed: i32) -> i32 {
+    match speed {
+        1..=4 => speed * 221 / 60,
+        5..=8 => speed * 221 * 90 / 100 / 60,
+        9 | 10 => speed * 221 * 77 / 100 / 60,
+        _ => 0 
+    }
 }
 
-fn heap_function(var: &mut Vec<i32>) {
-    var.push(50);
-    println!("The value of the vector inside the function is {:?}", var);
+fn palindrome(word: &str) -> bool {
+    let reversed_word = word
+        .chars()
+        .rev()
+        .collect::<String>();
+    word == reversed_word
 }
