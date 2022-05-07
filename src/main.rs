@@ -21,4 +21,29 @@ fn main() {
     }
 
     // println!("My name is {}", my_name);
+
+    // Ownership and function
+    let stack_num = 32;
+    let mut heap_num = vec![4, 5, 6];
+    stack_function(stack_num);
+    println!("The stack variable is copied and the original value was {}", stack_num);
+
+    heap_function(&mut heap_num);
+    println!("the value of the vector outside the function is {:?}", heap_num);
+
+    // Quiz
+    let mut heap_num = vec![4, 5, 6];
+    let ref1 = heap_num;
+    let ref2 = &ref1;
+
+}
+
+fn stack_function(mut var:i32) {
+    var = 46;
+    println!("The copied value of the variable has been updated to {}", var);
+}
+
+fn heap_function(var: &mut Vec<i32>) {
+    var.push(50);
+    println!("The value of the vector inside the function is {:?}", var);
 }
