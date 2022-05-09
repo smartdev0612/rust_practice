@@ -318,6 +318,7 @@ fn main() {
     println!("the name of the person is {} and his age is {}", nouman.name, nouman.age);
 } */
 
+/*
 fn main() {
     let some_vec = vec![5, 7, 8, 9, 7, 9, 5, 2];
     let return_vec = use_vec(&some_vec, &some_vec);
@@ -329,4 +330,74 @@ fn use_vec<'a>(vec1: &'a [i32], vec2: &'a [i32]) -> &'a [i32] {
     } else {
         vec2
     }
+} */
+
+//------------------------------------
+// Closures
+//  - Basic syntax
+//  - Closure with inputs
+//  - Same variable for different closure
+//  - Ownership rules and closures
+//  - Inference of the output
+//  - Passing a closure as a function
+//  - Reference to same variable
+//------------------------------------
+
+/*
+fn main() {
+    let x = 5;
+    let square = |num:i32| println!("the square of {} is {}", num, num * num);
+    let square = |num:i32| println!("the cube of {} is {}", num, num * num * num);
+    square(x);
+
+    let y = 15;
+    square(y);
+} 
+
+fn main() {
+    let print_user_age = |general_info:String, name:&str, age:i32| println!("{} \n\t {} : {}", general_info, name, age);
+    let general_info = String::from("The details are");
+    let (person_name, person_age) = (String::from("Nouman"), 51);
+
+    print_user_age(general_info, &person_name, person_age);
+    println!("The variable has been moved {}", general_info);
 }
+
+
+fn main() {
+    let square = |num| num * num;
+
+    let x = 5;
+    square(x);
+
+    let y = 105.5;
+    square(y);
+}
+*/
+
+fn main() {
+    let division_status  = |y:f32| {if y != 0.0 {true} else {false}};
+    division(5.0, 10.0, division_status);
+    division(54.0, 0.0, division_status);
+}
+
+fn division<F: Fn(f32) -> bool>(x:f32, y:f32, f: F) {
+    if f(y) == true {
+        println!("The division result is {}", x/y);
+    } else {
+        println!("Division is not possible");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
