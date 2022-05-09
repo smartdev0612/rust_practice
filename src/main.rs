@@ -490,8 +490,8 @@ fn main() {
 //  - Modifying and collecting values
 //------------------------------------
 
+/*
 fn main() {
-    /*
     let some_vec = vec![1,2,3,4,5,6,7,8];
     let mut iter = some_vec.iter();
 
@@ -524,7 +524,6 @@ fn main() {
 
     let mut iter = a.iter().rev();
     println!("The result of applying the rev function {:?}", iter.next());
-    */
 
     let a = vec![0,1,2,3,4,5,6,7];
     let filtered_values = a.iter().filter(|&x| *x >= 5).collect::<Vec<&u32>>();
@@ -540,7 +539,70 @@ fn main() {
     let mapped_values = b.iter().map(|x| 2 * *x).filter(|x| *x > 10).collect::<Vec<u32>>();
     println!("{:?}", mapped_values);
 }
+*/
 
+// Find the sum of naturarl numbers using iterators
+/*
+fn main() {
+    
+    let mut n = String::new();
+    std::io::stdin()
+    .read_line(&mut n)
+    .expect("failed to read input.");
+    let n: u32 = n.trim().parse().expect("invalid input");
+    
+    let divisible_by_3_5 =  (1..n).into_iter().filter(|&x| x % 3 == 0 || x % 5 ==0 ).collect::<Vec<u32>>();   
+    println!("{:?}", divisible_by_3_5);   
+    println!("{:?}", divisible_by_3_5.iter().sum::<u32>());  
+      
+}
+*/
+
+// Compute intersection and union
+fn main() 
+{
+    let mut vec_1: Vec<u32> = vec![5,4,3,6,9]; 
+    let mut vec_2: Vec<u32> = vec![5,8,6,4,10,15,20,21]; 
+
+   
+    let intersect = intersection(&vec_1, &vec_2); 
+    println!("\n\n The intersection of the two sets is {:?}",intersect); 
+
+    let union_set = union(&mut vec_1, &mut vec_2, &intersect); 
+    println!("\n\n The union of the set is  {:?} \n\n",union_set); 
+ 
+}
+
+
+fn intersection (first_set:&Vec<u32>, second_set:&Vec<u32>) -> Vec<u32>{
+    let mut common:Vec<u32> = Vec::new(); 
+
+    for i in first_set{
+        let val = second_set.iter().find(|&x| x == i); 
+        match val { 
+            Some(common_val) =>  common.push(*val.unwrap()), 
+
+            None => print!(""), 
+
+        } 
+    }
+    common
+}
+
+
+fn union<'a> (first_set:&'a mut Vec<u32>, second_set:&'a mut Vec<u32>, common:&'a Vec<u32>) -> Vec<&'a u32>{
+    
+    for i in common{
+        let position_of_common = first_set.iter().position(|&x| {x == *i});  
+        first_set.remove(position_of_common.unwrap()); 
+
+        let position_of_common = second_set.iter().position(|&x| {x == *i});  
+        second_set.remove(position_of_common.unwrap());  
+    }
+    let union_set  = first_set.iter().chain(second_set.iter()).chain(common.iter()).collect::<Vec<_>>(); 
+    union_set
+    
+}
 
 
 
