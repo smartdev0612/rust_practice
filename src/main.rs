@@ -396,9 +396,6 @@ fn division<F: Fn(f32) -> bool>(x:f32, y:f32, f: F) {
 //  - Borrow by immutable reference
 //  - Borrow by mutable reference
 //  - Moving of a value into a closure
-//  - Inference of the output
-//  - Passing a closure as a function
-//  - Reference to same variable
 //------------------------------------
 
 /*
@@ -407,7 +404,7 @@ fn main() {
     let some_closure_2 = |x| {x + 1};
     let some_closure_3 = |x| x + 1;
 }
-*/
+
 
 fn main() {
     let mut vec_1 = vec![1,2,3];
@@ -421,11 +418,68 @@ fn main() {
     //vec_1[1] = 15;
     println!("Vec 1: {:?}", vec_1);
     println!("Vec 2: {:?}", vec_2);
+} */
+
+//------------------------------------
+// Function Types
+//  - Basic syntax and use
+//  - Borrow by immutable reference
+//  - Borrow by mutable reference
+//  - Moving of a value into a closure
+//  - Inference of the output
+//  - Passing a closure as a function
+//  - Reference to same variable
+//------------------------------------
+
+/*
+fn main() {
+    let mut f = max;
+    println!("the maximum of the two values is {}", f(2, 3));
 }
 
+fn max(x: i32, y: i32) -> i32 {
+    if x > y {
+        x
+    } else {
+        y
+    }
+}
 
+fn min(x:i32, y:i32) -> i32 {
+    if x < y {
+        x
+    } else {
+        y
+    }
+} 
 
+fn prints_name(name: &str) {
+    println!("The name is {}", name);
+}
 
+fn prints_full_info(f: fn(&str), some_name: &str, age: i32) {
+    f(some_name);
+    println!(" and my age is {}", age);
+}
+
+fn main() {
+    let (my_name, my_age) = (String::from("Nouman"), 40);
+    prints_full_info(prints_name, &my_name, my_age);
+}
+*/
+
+fn add_one(x: i32) -> i32 {
+    x + 1
+}
+
+fn do_twice(f: fn(i32) -> i32, arg:i32) -> i32 {
+    f(arg) + f(arg)
+}
+
+fn main() {
+    let answer = do_twice(add_one, 5);
+    println!("The answer is: {}", answer);
+}
 
 
 
