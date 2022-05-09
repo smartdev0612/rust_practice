@@ -1,18 +1,58 @@
 
+/*
 #[derive(Debug)]
 enum Value {
     Integer(i32),
     Float(f32),
 }
 
-fn main() {
-    let some_val = vec![Value::Integer(12), Value::Float(15.5)];
-    println!("The value of the integer is {:?} and the value of the float is {:?}", some_val[0], some_val[1]);
+// Generics
+fn squarei32(x:i32) -> i32 {
+    x * x
+}
 
-    for i in some_val.iter() {
-        match i {
-            Value::Integer(num) => println!("The vlaue is an integer with a value of {}", num),
-            Value::Float(num) => println!("The value is a float with a value of {}", num)
-        }
+fn squaref32(x:f32) -> f32 {
+    x * x
+}
+
+
+fn square<T: std::ops::Mul<Output = T> + Copy> (x:T) -> T {
+    x * x
+}
+
+fn main() {
+    println!("The square of the number is {}", square(5));
+    println!("The square of the number is {}", square(5.5));
+}
+*/
+
+struct Point<T, U> {
+    x: T,
+    y: U,
+}
+
+impl <T, U> Point<T, U>
+where T: std::fmt::Debug, U: std::fmt::Debug {
+    fn printing(&self) {
+        println!("The value of the points are {:?}, {:?}", self.x, self.y)
     }
+}
+
+fn main() {
+    let p1 = Point {
+        x: 5,
+        y: 5
+    };
+
+    let p2 = Point {
+        x: 1.0,
+        y: 4.0,
+    };
+
+    let p3 = Point {
+        x: 5,
+        y: 5.0,
+    };
+
+    p1.printing();
 }
