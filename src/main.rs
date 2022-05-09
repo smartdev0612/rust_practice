@@ -142,6 +142,7 @@ fn main() {
     println!("{:?}", division(0.0, 2.0));
 }*/
 
+/*
 fn main() {
     let some_vec = vec![5,5,4,3,2,3,7,8];
     let result = match some_vec.get(5) {
@@ -149,4 +150,55 @@ fn main() {
         None => Err("the value does not exist"), 
     };
     println!("The value of the result is {:?}", result);
+}
+*/
+
+// Hash Maps
+use std::collections::HashMap;
+/*fn main() {
+    let mut person:HashMap<&str, i32> = HashMap::new();
+    person.insert("Nouman", 40);
+    person.insert("Kamran", 44);
+    person.insert("Shahid", 55);
+
+    println!("The age is {:?}", person.get("Nouman").unwrap());
+
+    if person.contains_key("Nouman") {
+        println!("The value exist");
+    } else {
+        println!("The value does not exist");
+    }
+
+    match person.get("Nouman") {
+        Some(Value) => println!("The value exists {}", Value),
+        None => println!("The value does not exist"),
+    }
+
+    for (name, age) in &person {
+        println!("the person {} has an age of {}", name, age);
+    }
+}*/
+
+/*
+fn main() {
+    let mut likes:HashMap<&str, &str> = HashMap::new();
+    /*likes.insert("Nouman", "apple");
+    likes.insert("Nouman", "mango");
+    println!("The fruit which is being liked is {:?}", likes);
+    */
+
+    likes.entry("Nouman").or_insert("apple");
+    likes.entry("Nouman").or_insert("Mango");
+    println!("The fruit which is being liked is {:?}", likes);
+}
+*/
+
+fn main() {
+    let some_vec:Vec<i32> = vec![4,5,6,7,7,4,3,5,6];
+    let mut freq_vec:HashMap<i32, u32> = HashMap::new();
+    for i in &some_vec {
+        let freq: &mut u32 = freq_vec.entry(*i).or_insert(0);
+        *freq += 1;
+    }
+    println!("{:?}", freq_vec);
 }
