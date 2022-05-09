@@ -154,7 +154,7 @@ fn main() {
 */
 
 // Hash Maps
-use std::collections::HashMap;
+use std::{collections::HashMap, vec};
 /*fn main() {
     let mut person:HashMap<&str, i32> = HashMap::new();
     person.insert("Nouman", 40);
@@ -373,7 +373,7 @@ fn main() {
     let y = 105.5;
     square(y);
 }
-*/
+
 
 fn main() {
     let division_status  = |y:f32| {if y != 0.0 {true} else {false}};
@@ -387,6 +387,40 @@ fn division<F: Fn(f32) -> bool>(x:f32, y:f32, f: F) {
     } else {
         println!("Division is not possible");
     }
+}
+*/
+
+//------------------------------------
+// Closures
+//  - A quick recap
+//  - Borrow by immutable reference
+//  - Borrow by mutable reference
+//  - Moving of a value into a closure
+//  - Inference of the output
+//  - Passing a closure as a function
+//  - Reference to same variable
+//------------------------------------
+
+/*
+fn main() {
+    let some_closure_1 = |x:u32| -> u32 {x + 1};
+    let some_closure_2 = |x| {x + 1};
+    let some_closure_3 = |x| x + 1;
+}
+*/
+
+fn main() {
+    let mut vec_1 = vec![1,2,3];
+    let mut some_closure = ||{
+        // println!("Vec1: {:?}", vec_1); // infered to be used as immutable reference
+        // vec_1.push(35);
+        let vec_2 = vec_1;
+    };
+
+    some_closure();
+    //vec_1[1] = 15;
+    println!("Vec 1: {:?}", vec_1);
+    println!("Vec 2: {:?}", vec_2);
 }
 
 
